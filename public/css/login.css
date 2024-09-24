@@ -1,0 +1,84 @@
+/* cor do corpo do site */
+body{ 
+    background-color: #dddddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* linhas */
+.row{ 
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+}
+/* colunas */
+.col{
+    display: flex;
+    flex-direction: column;
+}
+/* caixa/card/container de login */
+.login-box{
+    height: 280px;
+    width: 400px;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.178);
+    font-family: 'Manrope', Arial, Helvetica, sans-serif;
+}
+/* pegando o h1 da caixa do login */
+.login-box > h1{
+    text-transform: uppercase;
+    font-size: 30px;
+    color: #1877F2;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Roboto condensed', Arial, Helvetica, sans-serif;
+}
+/* dando margem para a segunda linha (enésimo filho) */
+.row:nth-child(1){
+    margin-bottom: 10px;
+} 
+/* mudando a largura das colunas dentro da linha */
+.row > .col{
+    width: 100%;
+}
+
+/* mudando dois elementos input e select ao mesmo tempo */
+.login-box input{
+    width: 100%;
+    height: 35px;
+    border-radius: 2px;
+}
+/* estilos para o input */
+.login-box input{
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    padding-left: 5px;
+}
+/* mudando os estilos quando o input estiver clicado */
+.login-box input:focus{
+    outline: none;
+    border: 2px solid #1877F2;
+}
+/* etiqueta, label que contem a descrição do input */
+.login-box label{
+    margin-bottom: 5px;
+}
+/* estilos do botão */
+.login-box button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    margin-top: 15px;
+    background-color: #1877F2;
+    color: #FFF;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: 0.2s all;
+    border-radius: 5px;
+}
+/* alterar a cor de fundo quando o mouser ficar em cima do botão */
+.login-box button:hover{
+    background-color:#1253a8;
+}

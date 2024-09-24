@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="shortcut icon" href="/icon/organizacao-_1_.ico">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoySense | Dashboard</title>
+    <!-- chart js lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+
+    <!-- estático js script -->
+    <script src="/js/side-bar.js" defer></script>
+    <script src="/js/open-addmonitor.js" defer></script>
+    <!-- <script src="/js/graficos-simulativo-fazenda.js" defer></script> -->
+
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/global-style.css">
+    <link rel="stylesheet" href="/css/side-bar.css">
+    <link rel="stylesheet" href="/css/fazenda.css">
+    <link rel="stylesheet" href="/css/header-main.css">
+    <link rel="stylesheet" href="/css/adicionar-monitor.css">
+</head>
+
+<body>
+    <aside class="side-bar">
+        <div class="logo-wrapper">
+            <img src="/icon/logo-soysense.png" />
+        </div>
+        <div class="profile-wrapper">
+            <div class="profile-picture">
+                <img src="/img/profile.jpg" />
+            </div>
+            <span>
+                <%= userCompany %>
+            </span>
+            <h4>
+                <%= userName %>
+            </h4>
+        </div>
+        <div class="line-side-bar"></div>
+        <nav class="nav-side-bar">
+            <ul class="accordion-menu">
+                <li class="nav-normal-item">
+                    <a href="/dashboard">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
+                            alt="dashboard-layout" />
+                        Dashboard
+                    </a>
+                </li>
+                <% if(userAdmin==1){ %>
+                    <li class="accordion-item">
+                        <div class="accordion-item-header">
+                            <img width="20" height="20"
+                                src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png"
+                                alt="maintenance" />
+                            <span>Gerenciar</span>
+                        </div>
+
+                        <ul class="accordion-submenu">
+                            <li class="accordion-subitem">
+                                <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
+                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                        alt="left-down2" />&nbsp; Monitor
+                                </a>
+                            </li>
+                            <li class="accordion-subitem">
+                                <a href="/fazenda"><img width="10" style="transform: rotate(270deg);" height="10"
+                                        src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                        alt="left-down2" />&nbsp; Fazenda
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } %>
+                        <li class="accordion-item dash-on">
+                            <div class="accordion-item-header">
+                                <img width="17" height="17"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/address.png"
+                                    alt="address" />
+                                <span>Fazendas</span>
+                            </div>
+                            <ul class="accordion-submenu ">
+                                <% if(userAdmin==1) { %>
+                                    <% fazendas.forEach((fazenda)=>{ %>
+                                        <li class="accordion-subitem">
+                                            <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
+                                        </li>
+                                    <% }) %>
+                                <% }else { %>
+                                    <% if( userFazenda == null) { %>
+                                        <li class="accordion-subitem">
+                                            <a href="/naoencontrado"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />Nenhuma fazenda!</a>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="accordion-subitem">
+                                            <a href="/fazenda/1"><img width="10"
+                                                    style="transform: rotate(270deg);" height="10"
+                                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                                    alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                        </li>
+                                    <% } %>
+                                <% } %>
+                            </ul>
+                        </li>
+                        <li class="accordion-item">
+                            <div class="accordion-item-header">
+                                <img width="17" height="17"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/document--v1.png"
+                                    alt="document--v1" />
+                                <span>Relatório</span>
+                            </div>
+                            <ul class="accordion-submenu">
+                                <li class="accordion-subitem">
+                                    <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;Desempenho</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-normal-item">
+                            <a href="">
+                                <img width="17" height="17"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png"
+                                    alt="fine-print" />
+                                Benchmarking
+                            </a>
+                        </li>
+                        <li class="accordion-item">
+                            <div class="accordion-item-header">
+                                <img width="17" height="17"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/settings--v1.png"
+                                    alt="settings--v1" />
+                                <span>Configuração</span>
+                            </div>
+                            <ul class="accordion-submenu">
+                                <li class="accordion-subitem">
+                                    <a href="/profile"><img width="10" style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;Perfil</a>
+                                </li>
+                                <li class="accordion-subitem">
+                                    <a href="https://soytech.atlassian.net/servicedesk/customer/portals"><img width="10" style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;Suporte</a>
+                                </li>
+                            </ul>
+                        </li>
+            </ul>
+        </nav>
+        <div class="footer-aside">
+            <div class="logout-container">
+                <a href="/logout">
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                        alt="logout-rounded" />
+                    Sair
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main class="main-dashboard">
+
+        <header class="header-dashboard">
+            <div class="inner-header">
+                <h1>Complexo</h1>
+                <a href="#">/fazenda/<%= fazendaId %></a>
+                <% if(userAdmin == 1){ %>
+                    <button id="openModalAdicionarMonitor" class="button-adicionar-monitor">Adicionar Monitor</button>
+                <% }%>
+            </div>
+        </header>
+        <section class="summary-container">
+            <div class="summary-card">
+                <div class="summary-main alerta-bloco" id="temp-card">
+                    <h1 id="text-temp">
+
+                    </h1>
+                </div>
+                <div class="summary-footer alerta-bloco">
+                    <h1>Temperatura (°C)</h1>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-main" id="umid-card">
+                     <h1 id="text-umid"> 
+
+                     </h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>Umidade (%)</h1>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-main">
+                    
+                    <%
+                        var calculoDesempenhoTemperatura = Number((sensor[3].quantidade / (sensor[3].quantidade + sensor[2].quantidade) * 100).toFixed(2));
+                        var calculoDesempenhoUmidade = Number((sensor[1].quantidade / (sensor[1].quantidade + sensor[0].quantidade) * 100).toFixed(2));
+                        var mediaDesempenho = (calculoDesempenhoUmidade + calculoDesempenhoTemperatura) / 2 
+                    %>
+                    <h1><%= mediaDesempenho %>%</h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>Desempenho Total</h1>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-main">
+                    <h1 id="contagem-temp-critico">11</h1>
+                </div>
+                <div class="summary-footer ">
+                    <h1>Alertas /mês</h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="grafico_down">
+            <section class="content-graficos">
+                <section class="temp-container">
+                    <div class="left-temp">
+                        <h4>Temperatura Média (°C)</h4>
+                        <section>
+                            <canvas width="650" height="220" id="lm35Temperatura"></canvas>
+                        </section>
+                    </div>
+                    <div class="left-umid">
+                        <h4>Umidade Média (%)</h4>
+                        <section>
+                            <canvas width="650" height="220" id="dht11Umidade"></canvas>
+                        </section>
+                    </div>
+                </section>
+                <section class="rightGraficos">
+                    <div class="blocoUmid">
+                        <div class="blocoDesc">
+                            <div class="descPizzaUmid">
+                                <div class="tituloTabela">Parâmetros de umidade:</div>
+                                <div class="classificacaoLegenda">
+                                    <div class="descGreen"></div>
+                                    <div class="descYellow"></div>
+                                    <div class="descRed"></div>
+                                </div>
+                                <div class="parametroLegenda">
+                                    <div class="ruim">12%</div>
+                                    <div class="ruim">14%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blocoGrafico">
+                            <div class="graficoPizzaUmid">
+                                <div class="statusSensores">
+                                    <h4>Status dos sensores</h4>
+                                </div>
+                                <div class="graficoRedondo">
+                                    <canvas width="550px" height="450px" id="qtdLm35"></canvas>
+                                </div>
+                            </div>
+                            <div class="tabelaUmid">
+                                <div>
+                                    <h4>Informações gerais</h4>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <th>Sensores</th>
+                                        <th>Desempenho</th>
+                                        <th>Medição</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <%= sensor[1].quantidade %> / <%= sensor[1].quantidade + sensor[0].quantidade %>
+                                        </td>
+                                        <td>
+                                            <%= calculoDesempenhoUmidade %>%
+                                        </td>
+                                        <td>Umidade</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blocoTemp">
+                        <div class="blocoDesc">
+                            <div class="descPizzaTemp">
+                                <div class="tituloTabela">Parâmetros de temperatura (C°):</div>
+                                <div class="classificacaoLegenda">
+                                    <div class="descGreen"></div>
+                                    <div class="descYellow"></div>
+                                    <div class="descRed"></div>
+                                </div>
+                                <div class="parametroLegenda">
+                                    <div class="ruim">20°</div>
+                                    <div class="ruim">30°</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blocoGrafico">
+                            <div class="graficoPizzaTemp">
+                                <div class="statusSensores">
+                                    <h4>Status dos sensores</h4>
+                                </div>
+                                <div class="graficoRedondo">
+                                    <canvas width="550px" height="450px" id="qtdDht11"></canvas>
+                                </div>
+                            </div>
+                            <div class="tabelaTemp">
+                                <div>
+                                    <h4>Informações gerais</h4>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <th>Sensores</th>
+                                        <th>Desempenho</th>
+                                        <th>Medição</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <%= sensor[3].quantidade %> / <%= sensor[2].quantidade + sensor[3].quantidade %>
+                                        </td>
+                                        <td>
+                                            <%= calculoDesempenhoTemperatura %>%
+                                        </td>
+                                        <td>Temperatura (C°)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <div id="modalAdicionarMonitor" class="modal">
+            <div class="modal-content">
+                <div class="header-modal">
+                    <span class="close" id="closeAdicionarMonitor">&times;</span>
+                </div>
+                <div class="cadastro-box">
+                    <h1>Adicione um monitor à essa fazenda</h1>
+                    <form id="form_cadastrar_monitor" action="/fazenda/addMonitor" method="POST">
+                        <div class="row">
+                            <div class="col select-monitor">
+                                <select style="height: 40px;" name="idMonitor">
+                                    <option value="#">Selecione um monitor...</option>
+                                    <% monitors.forEach((monitor)=>{ %>
+                                        <% if( monitor.fkFazenda == null && monitor.administrador != 1){ %>
+                                            <option value="<%= monitor.idUsuario %>"><%= monitor.usuario %></option>
+                                        <% } %>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input name="idFazenda" type="hidden" value="<%= fazendaId %>">
+                                <button type="submit">Adicionar Monitor</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+let medidasUmidade = [0];
+let medidasTemperatura = [0];
+let horariosCaptura = [];
+
+setInterval(() => {
+    fetch(`/medidas/ultimas/<%= fazendaId %>`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                if (medidasUmidade.length > 9) {
+                    horariosCaptura.shift();
+                    medidasUmidade.shift(); // Remove o primeiro elemento se exceder 10 registros
+                }
+                if (medidasTemperatura.length > 9) {
+                    medidasTemperatura.shift(); // Remove o primeiro elemento se exceder 10 registros
+                }
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                let horaAtual = new Date().toLocaleTimeString(); // Captura a hora atual
+                horariosCaptura.push(horaAtual); // Adiciona a hora atual ao início do array
+
+                medidasTemperatura.push(resposta[1].media_dados);
+                let textTemp = document.querySelector('#text-temp');
+                let valorTemperatura = Number(medidasTemperatura[medidasTemperatura.length - 1]).toFixed(1); // Exemplo de pegar o primeiro valor e formatar com 1 decimal
+                textTemp.textContent = `${valorTemperatura} C`;
+
+                medidasUmidade.push(resposta[0].media_dados);
+                let textUmid = document.querySelector('#text-umid');
+                let valorUmidade = parseFloat(medidasUmidade[medidasUmidade.length - 1]).toFixed(0);
+                textUmid.textContent = `${valorUmidade}%`;
+
+                console.log(medidasTemperatura);
+
+
+                updateGraphic(); // Atualiza os gráficos
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}, 1000);
+
+function updateGraphic() {
+    // Atualiza os gráficos de temperatura e umidade
+    lm35Temperatura.data.datasets[0].data = medidasTemperatura;
+    dht11Umidade.data.datasets[0].data = medidasUmidade;
+
+    // Atualiza os labels do eixo X com os horários de captura
+    lm35Temperatura.data.labels = horariosCaptura.slice(0, 10); // Limita a 10 registros
+    dht11Umidade.data.labels = horariosCaptura.slice(0, 10); // Limita a 10 registros
+
+    // Atualiza os gráficos
+    lm35Temperatura.update();
+    dht11Umidade.update();
+}
+        var umidCard = document.querySelector('#umid-card');
+        var tempCard = document.querySelector('#temp-card');
+
+
+        /* -- lm35Temperatura */
+        var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
+        var lm35Temperatura = new Chart(
+            contextoLm35Temperatura,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Temperatura',
+                        type: 'line',
+                        borderColor: ['#ffd902'],
+                        backgroundColor: ['#ffe13588']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 10
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+
+        /* -- qtd lm35 */
+        var contextoQtdLm35 = document.getElementById('qtdLm35').getContext('2d');
+        var qtdLm35 = new Chart(
+            contextoQtdLm35,
+            {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#fff'],
+                        backgroundColor: ['#fff']
+                    }],
+                    labels: [
+                        'Ativos',
+                        'Inativos',
+                    ],
+                    datasets: [{
+                        data: [<%= sensor[1].quantidade %>, <%= sensor[0].quantidade %>],
+                        backgroundColor: [
+                            '#008ae6',
+                            '#ff0000',
+                        ],
+                        hoverBackgroundColor: [ // Cor de fundo ao passar o mouse sobre o segmento
+                            '#00568f',
+                            '#720000',          // Cor ao passar o mouse sobre o segmento "Inativos"
+                        ],
+                        hoverOffSet: 1,
+                        borderWidth: 3,
+                    }]
+                }
+            }
+        );
+
+
+
+        /* -- dht11Umidade -- */
+        var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+        var dht11Umidade = new Chart(
+            contextoDht11Umidade,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#45b4e794']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 10
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade',
+
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- qtd dht11 */
+        var contextoQtdDht11 = document.getElementById('qtdDht11').getContext('2d');
+        var qtdDht11 = new Chart(
+            contextoQtdDht11,
+            {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [<%= sensor[2].quantidade %>, <%= sensor[3].quantidade %>],
+                        backgroundColor: [
+                            'rgb(235, 22, 22) ',
+                            '#008ae6',
+                        ],
+                        hoverBackgroundColor: [
+                            'rgb(255, 45, 45)',
+                            '#005b99'
+                        ],
+                        hoverOffset: 2,
+                        borderWidth: 3,
+                    }],
+                    labels: [
+                        'Inativos',
+                        'Ativos',
+                    ]
+                }
+            }
+        );
+    </script>
+
+</body>
+
+</html>

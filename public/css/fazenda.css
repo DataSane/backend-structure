@@ -1,0 +1,316 @@
+/* -======================== */
+
+.summary-card:nth-child(1)>.summary-footer {
+    background-color: #e68b04 !important;
+}
+
+.summary-card:nth-child(1)>.summary-main {
+    background-color: #f89500 !important;
+    color: #fff;
+}
+
+.summary-card:nth-child(2)>.summary-footer {
+    background-color: #047ecf;
+}
+
+.summary-card:nth-child(2)>.summary-main {
+    background-color: #008ae6;
+    color: #fff;
+}
+
+.summary-card:nth-child(3)>.summary-footer {
+    background-color: #249224;
+}
+
+.summary-card:nth-child(3)>.summary-main {
+    background-color: #27a727;
+    color: #FFF;
+}
+
+.summary-card:nth-child(4)>.summary-footer {
+    background-color: rgb(208, 22, 22) !important;
+
+}
+
+.summary-card:nth-child(4)>.summary-main {
+    background-color: rgb(235, 22, 22) !important;
+    color: #ffffff;
+}
+
+.summary-main {
+    height: calc(100% - 50px);
+    display: flex;
+    align-items: center;
+    ;
+    font-size: 35px;
+    padding-left: 30px;
+}
+
+.grafico_down {
+    display: flex;
+    height: 70vh;
+    margin-top: 5px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-graficos {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.graficoRedondo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* lado esquerdo*/
+
+.temp-container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.temp-container h4 {
+    padding: 5px;
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+}
+
+.temp-container section {
+    width: 95%;
+}
+
+.left-temp {
+    width: 99%;
+    height: 70%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 1em #9e9e9e;
+}
+
+.left-umid {
+    width: 99%;
+    height: 70%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 0 1em #9e9e9e;
+}
+
+/* lado direito*/
+
+.rightGraficos {
+    width: 100%;
+    height: 100%;
+    margin-left: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.blocoUmid {
+    height: 98%;
+    width: 50%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 7px;
+}
+
+.blocoTemp {
+    height: 98%;
+    width: 50%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 7px;
+}
+
+.descPizzaUmid {
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 8vh;
+    flex-direction: column;
+    display: flex;
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
+}
+
+.descPizzaTemp {
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 8vh;
+    flex-direction: column;
+    display: flex;
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
+}
+
+.graficoPizzaUmid {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    flex-direction: column;
+    height: 35vh;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    display: flex;
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
+}
+
+.graficoPizzaTemp {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    height: 35vh;
+    display: flex;
+    background-color: #ffffff;
+    /* box-shadow: 0 0 0.5em rgb(115, 115, 115); */
+}
+
+.tabelaUmid {
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 8vh;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+}
+
+.tabelaTemp {
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 8vh;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+}
+
+.tituloTabela {
+    height: 20%;
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+}
+
+.classificacaoLegenda {
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    background: rgb(255,0,0);
+background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,249,27,1) 36%, rgba(110,240,0,1) 50%, rgba(255,249,27,1) 66%, rgba(255,27,27,1) 100%);
+}
+
+.descGreen,
+.descYellow,
+.descRed {
+    width: 33.5%;
+}
+
+
+.blocoDesc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    border-radius: 6px;
+    height: 15%;
+    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #FFF;
+}
+
+
+.blocoGrafico{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 98%;
+    padding-top: 40px;
+    flex-direction: column;
+    border-radius: 6px;
+    height: 83%;
+    box-shadow: 0 0 0.5em rgb(115, 115, 115);
+    background-color: #FFF;
+}
+
+th{
+    background-color: #206eff;
+    color: #FFF;
+    width: 33%;
+    font-weight: bold;
+}
+
+td{
+    height: 80%;
+    font-weight: 600;
+}
+
+table{
+    width: 100%;
+    height: 80%;
+    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+}
+
+.parametroLegenda{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    width: 95%;
+    font-family: 'Montserrat';
+}
+
+.summary-main.alerta-bloco {
+    background-color: rgb(235, 22, 22) !important;
+
+}
+
+.summary-footer.alerta-bloco {
+    background-color: rgb(208, 22, 22) !important;
+}

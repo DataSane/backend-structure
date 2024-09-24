@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<link rel="shortcut icon" href="/icon/organizacao-_1_.ico">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoySense | Dashboard</title>
+    <!-- chart js lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- estático js script -->
+    <script src="/js/side-bar.js" defer></script>
+    <script src="/js/graficos-simulativo-dashboard.js" defer></script>
+
+
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/global-style.css">
+    <link rel="stylesheet" href="/css/side-bar.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/header-main.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+</head>
+
+<body>
+    <aside class="side-bar">
+        <div class="logo-wrapper">
+            <img src="/icon/logo-soysense.png" />
+        </div>
+        <div class="profile-wrapper">
+            <div class="profile-picture">
+                <img src="/img/profile.jpg" />
+            </div>
+            <span><%= userCompany %></span>
+            <h4><%= userName %></h4>
+        </div>
+        <div class="line-side-bar"></div>
+        <nav class="nav-side-bar">
+            <ul class="accordion-menu">
+                <li class="nav-normal-item dash-on">
+                    <a href="/dashboard">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/dashboard-layout.png"
+                            alt="dashboard-layout" />
+                        Dashboard
+                    </a>
+                </li>
+                <% if(userAdmin == 1){ %>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="20" height="20"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/maintenance.png"
+                            alt="maintenance" />
+                        <span>Gerenciar</span>
+                    </div>
+                   
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href="/monitor"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Monitor 
+                            </a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp; Complexo
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <% } %>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17" src="https://img.icons8.com/material-outlined/24/FFFFFF/address.png"
+                            alt="address" />
+                        <span>Fazendas</span>
+                    </div>
+                    <ul class="accordion-submenu ">
+                        <% if(userAdmin==1) { %>
+                            <% fazendas.forEach((fazenda)=>{ %>
+                                <li class="accordion-subitem">
+                                    <a href="/fazenda/<%= fazenda.idFazenda %>"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;<%= fazenda.localidade %></a>
+                                </li>
+                            <% }) %>
+                        <% }else { %>
+                            <% if( userFazenda == null) { %>
+                                <li class="accordion-subitem">
+                                    <a href="/naoencontrado"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />Nenhuma fazenda!</a>
+                                </li>
+                            <% }else{ %>
+                                <li class="accordion-subitem">
+                                    <a href="/fazenda/1"><img width="10"
+                                            style="transform: rotate(270deg);" height="10"
+                                            src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                            alt="left-down2" />&nbsp;<%= fazendas[0].localidade %></a>
+                                </li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/document--v1.png"
+                            alt="document--v1" />
+                        <span>Relatório</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Desempenho</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Rentabilidade</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;;Anomalias</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-normal-item">
+                    <a href="">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/fine-print.png" alt="fine-print" />
+                        Benchmarking
+                    </a>
+                </li>
+                <li class="accordion-item">
+                    <div class="accordion-item-header">
+                        <img width="17" height="17"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/settings--v1.png"
+                            alt="settings--v1" />
+                        <span>Configuração</span>
+                    </div>
+                    <ul class="accordion-submenu">
+                        
+                        <li class="accordion-subitem">
+                            <a href="/src/views/perfil.ejs"><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Perfil</a>
+                        </li>
+                        <li class="accordion-subitem">
+                            <a href=""><img width="10" style="transform: rotate(270deg);" height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/left-down2.png"
+                                    alt="left-down2" />&nbsp;Suporte</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="footer-aside">
+            <div class="logout-container">
+                <a href="/logout">
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/f13939/logout-rounded.png"
+                        alt="logout-rounded" />
+                    Sair
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main class="main-dashboard">
+
+        
+        <section>
+                <div class="container-perfil">
+                    <div class="content-perfil">
+                        <div class="imgPerfil">
+                            <div class="box-perfil">
+                                <div class="avatar_wrapper">
+                                    <img id="avatar" class="avatar" src="" alt="Sua imagem">
+                                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                                    <button class="uploadButton" id="uploadButton" style="display: none;">Adicione sua imagem</button>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="box-perfil">
+                            Email:
+                            <input id="email" disabled>
+                        </div>
+                        <div class="box-perfil">
+                            Senha:
+                            <input id="senha" type="password" disabled>
+                        </div>
+                        <div class="box-perfil">
+                            Confirmar Senha:
+                            <input id="confirmacaoSenha" type="password" disabled>
+                        </div>
+                        <div class="box-perfil" id="passwordValidation" style="display: none;">
+                           
+                        </div>
+                        <div class="box-perfil">
+                            <button class="bntPerfil" id="editButton">Editar Perfil</button>
+                            <button class="bntPerfil" id="saveButton" style="display: none;">Salvar Alterações</button>
+                            <button class="bntPerfil" id="cancelButton" style="display: none;">Cancelar Alterações</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <script src="/js/perfil.js"></script>
+</body>
+
+
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoySense System | Login</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/modal-login-erro.css">
+    <script src="/js/modal-callback-remove.js" defer></script>
+</head>
+<body> 
+    <% if (hasError) { %>
+        <div id="modalErro" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-erro">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                   <p style="text-align: center; color: red;"> <%= errorMessage %> </p>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    <div class="login-box">
+        <h1>Login</h1>
+        <form action="/" method="POST" id="form_login">
+            <div class="row">
+                <div class="col">
+                    <label>Email:</label>
+                    <input name="email" type="text" id="email_input">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Senha:</label>
+                    <input name="senha" type="password" id="senha_input">
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

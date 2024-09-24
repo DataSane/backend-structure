@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <link rel="shortcut icon" href="/icon/organizacao-_1_.ico">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoySense System | Funcionário </title>
+    <link rel="stylesheet" href="/css/global-style.css">
+    <link rel="stylesheet" href="/css/monitor-iframe.css">
+    <link rel="stylesheet" href="/css/modal-login-erro.css">
+
+    <script src="/js/modal-callback-remove.js" defer></script>
+</head>
+
+<body>
+    <div class="cadastro-box">
+        <h1>Cadastre uma Fazenda</h1>
+        <form id="form_cadastrar_monitor" action="/fazenda/register" method="POST">
+            <div class="row">
+                <div class="col">
+                    <label>Localidade:</label>
+                    <input name="localidade" id="input_usuario" type="text" required placeholder="Insira a localidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Cep Rural:</label>
+                    <input name="cepRural" id="input_email" type="number" required placeholder="Insira o cep (Rural)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Quantidade Hectares:</label>
+                    <input name="qtdHec" id="input_senha"  type="number" required placeholder="Insira a quantidade de hectares">
+                </div>
+            </div>
+            <div class="row">
+                <input name="idAdmin" type="hidden" value="<%= userId %>">
+                <button type="submit">Cadastrar Fazenda</button>
+            </div>
+        </form>
+    </div>
+
+    <% if(hasError){ %>
+        <div id="modalErro" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-erro">
+                    <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/box-important--v1.png"
+                        alt="box-important--v1" />
+                </div>
+                <div class="modal-erros" id="modal_erros">
+                    <p style="text-align: center; color: red;"> <%= errorMessage %> </p>
+                </div>
+            </div>
+        </div>
+    <% } %>     
+ 
+    <% if(hasBeenRegistered){ %>
+        <div id="modalCorreto" class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="header-modal-correto">
+                    <img width="50" height="50" src="https://img.icons8.com/glyph-neue/64/FFFFFF/tiktok-verified-account.png" alt="tiktok-verified-account"/>
+                </div>
+                <div class="modal-corretos" id="modal_corretos">
+                    <p style="text-align: center; color: green;"> Fazenda registrada com sucesso! </p>
+                </div>
+            </div>
+        </div>
+        <script>
+            setTimeout(()=>{
+               // Fechar o iframe
+                //    window.parent.document.getElementById('iframeId').style.display = 'none';
+                
+                // Atualizar a outra página
+                window.parent.location.reload();
+            }, 1500)
+        </script>
+    <% } %> 
+
+</body>
+</html>

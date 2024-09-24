@@ -1,0 +1,287 @@
+.inner-header {
+    position: relative;
+}
+/* card 1 */
+.summary-card {
+    width: 20% !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.summary-card:nth-child(1)>.summary-footer {
+    background-color: rgb(115, 208, 22);
+}
+
+.summary-card:nth-child(1)>.summary-main {
+    background-color: rgb(115, 208, 22);
+    color: #fff;
+}
+
+.summary-card:nth-child(1)>.summary-main>span {
+    font-weight: bolder;
+}
+
+.summary-card:nth-child(1)>.summary-main h1 {
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+
+/* card 2 */
+.summary-card:nth-child(2)>.summary-footer {
+    background-color: rgb(115, 208, 22);
+}
+
+.summary-card:nth-child(2)>.summary-main {
+    background-color: rgb(115, 208, 22);
+    color: #fff;
+}
+
+.summary-card:nth-child(2)>.summary-main>span {
+    font-weight: bolder;
+}
+
+.summary-card:nth-child(2)>.summary-main h1 {
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+
+/* card 3 */
+.summary-card:nth-child(3)>.summary-footer {
+    background-color: #249224;
+
+}
+
+.summary-card:nth-child(3)>.summary-main {
+    background-color: #27a727;
+
+    color: #ffffff;
+}
+
+.summary-card:nth-child(3)>.summary-main>span {
+    font-weight: bolder;
+}
+
+.summary-card:nth-child(3)>.summary-main h1 {
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+/* card 4 */
+.summary-card:nth-child(4)>.summary-footer {
+    background-color: #047ecf;
+
+}
+
+.summary-card:nth-child(4)>.summary-main {
+    background-color: #008ae6;
+    color: #FFF;
+}
+
+.summary-card:nth-child(4)>.summary-main>span {
+    font-weight: bolder;
+}
+
+.summary-card:nth-child(4)>.summary-main h1 {
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.summary-main {
+    height: calc(100% - 50px);
+    padding: 10px;
+}
+
+/* card 5 */
+.summary-card:nth-child(5)>.summary-footer {
+    background-color: #e68b04;
+
+}
+
+.summary-card:nth-child(5)>.summary-main {
+    background-color: #f89500;
+    color: #FFF;
+}
+
+.summary-card:nth-child(5)>.summary-main>span {
+    font-weight: bolder;
+}
+
+.summary-card:nth-child(5)>.summary-main h1 {
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.summary-main {
+    height: calc(100% - 50px);
+    padding: 10px;
+}
+
+.graficoDown {
+    width: 100%;
+    height: 71.5%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graficosContent {
+    width: 39.5%;
+    height: 95%;
+    display: flex;
+    border-radius: 7px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+canvas {
+    width: 20%;
+    height: 20%;
+}
+
+.allDown {
+    width: 90%;
+    height: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tituloGraficoRight {
+    width: 100%;
+    text-align: center;
+    height: 6vh;
+    border-radius: 7px 7px 0px 0px;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.legendaPrincipal {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 59.7%;
+    height: 95%;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabelaPrincipal {
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    height: 49.1%;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.graficoBarras,
+.grafico {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+h4{
+    font-size: 16px;
+    font-family: 'montserrat', Arial, Helvetica, sans-serif;
+}
+
+.contentTabela {
+    width: 90%;
+    height: 75%;
+    display: flex;
+    border-radius: 0px 0px 7px 7px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+
+.graficoPizzaPrincipal{
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graficoPizzaPrincipal h4{
+    justify-content: center;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+}
+
+.graficoPizzaDown{
+    width: 100%;
+    height: 49.1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 7px;
+}
+
+#graficosPizzaDashPrincipal{
+    width: 550px;
+    height: 450px;
+}
+
+
+.table-container {
+    border-radius: 7px  0px 0px 7px;
+    width: 95%;
+    height: 200px;
+    background-color: rgb(222, 222, 222);
+    overflow-y: auto; /* Adicione um scroll vertical quando necessário */
+}
+
+table {
+    width: 100%;
+    font-size: 12px;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif;
+}
+
+thead th {
+    position: sticky;
+    top: -1px;
+    background-color: #203751;
+    color: white;
+    height: 25px;
+    z-index: 2; /* Certifique-se de que o cabeçalho fique acima do conteúdo do corpo */
+}
+th{
+    text-align: center;
+}
+tr{
+    height: 25px;
+    background-color: #FFF;
+}
+
+
+ td {
+    height: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e4e4e4;
+}
