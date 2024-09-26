@@ -5,8 +5,8 @@ router.get('/', (req, res) => {
     res.json({ usuarios: [{ id: 1, nome: 'João' }, { id: 2, nome: 'Maria' }] });
 });
 
-router.post('/', (req, res) => {
-    res.status(201).json({ mensagem: 'Usuário criado com sucesso' });
+router.post('/login', (req, res) => {
+    res.status(201).json({ mensagem: 'Logado com sucesso' });
 });
 
 router.get('/:id', (req, res) => {

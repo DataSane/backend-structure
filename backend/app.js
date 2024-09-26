@@ -60,7 +60,7 @@ app.use('/api', apiRoutes);
 
 // Middleware para lidar com rotas não encontradas
 app.use((req, res) => {
-    res.status(404).json({ message: 'Rota não encontrada' });
+    res.render('error');
 });
 
 // Middleware para lidar com erros
@@ -83,5 +83,5 @@ try {
     console.log(`\x1b[31mErro ao inicializar o servidor\x1b[0m\n${e}`);
 }
 
-// var database = require('./src/configs/database/connection');
-// console.log(database.execute('SELECT * FROM usuario LIMIT 1'));
+var database = require('./src/configs/database/connection');
+console.log(database.execute('SELECT * FROM user LIMIT 1'));
