@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
-const fazendaController = require('../controllers/fazendaController');
+const userController = require('../../controllers/userController');
+const fazendaController = require('../../controllers/fazendaController');
 
 // Rota raiz dentro do grupo /dashboard
 router.get('/', async function(req, res) {

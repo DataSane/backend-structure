@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var userController = require("../controllers/userController");
+var userController = require("../../controllers/userController");
 
 // Rota raiz dentro do grupo /
 router.get('/', function(req, res) {
@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
             console.log(errorMessage);
         }
 
-        res.render('login', { 
+        res.render('login',{ 
             hasError: hasError,
             errorMessage: errorMessage
          });
