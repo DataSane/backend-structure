@@ -8,15 +8,13 @@ function login(req,res){
     .then((resultadoQuery) => {
       if (resultadoQuery.success) {
         req.session.authenticated = true;
+
         req.session.user = {
-          session_userId: resultadoQuery.bd_userid,
+          session_userid: resultadoQuery.bd_userid,
           session_isadmin: resultadoQuery.bd_isadmin
         };
-        
-        res.render('dashboard', {
-            userid: req.session.user.session_userId,
-            isadmin: req.session.user.session_isadmin
-        });
+
+        res.redirect('/dashboard');
         
       } else {
         req.session.authenticated = false;

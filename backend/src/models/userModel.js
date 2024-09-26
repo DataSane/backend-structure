@@ -12,15 +12,12 @@ async function authLogin(email, senha) {
     return await database.execute(sqlCommand).then(resultQuery => {
     
         if (resultQuery && resultQuery.length > 0) {
-            // Se houver pelo menos um resultado, significa que o login foi bem-sucedido
-            // Após o login bem-sucedido
             return {
                  success: true, 
-                 bd_userId: resultQuery[0].userid,
+                 bd_userid: resultQuery[0].userid,
                  bd_isadmin: resultQuery[0].isadmin
             };
         } else {
-            // Se o resultado estiver vazio, significa que o login falhou
             return { 
                 success: false,
                  message: 'Credenciais de login inválidas.' 
@@ -28,7 +25,6 @@ async function authLogin(email, senha) {
         }
     })
     .catch(error => {
-        // Se ocorrer um erro durante a execução da consulta SQL, capture e manipule-o aqui
         console.error(error);
         return { success: false, message: 'Error to execute auth login' };
     });;
